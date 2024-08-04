@@ -2,13 +2,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken'); // Add this
+const jwt = require('jsonwebtoken');
 const { body, validationResult } = require('express-validator');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const JWT_SECRET = 'your_secret_key'; // Replace with a secure key
-
+const JWT_SECRET = 'your_secret_key';
 app.use(express.json());
 app.use(cors());
 
@@ -90,12 +89,12 @@ app.post('/signin', async (req, res) => {
         if (student) {
             const isMatch = bcrypt.compareSync(password, student.password);
             if (isMatch) {
-                // Generate a token
                 const token = jwt.sign(
-                    { id: student._id, name: student.name, role: student.role },
+                    { id: student._id, name: student.name, role: student.role, Email: student.Email, schoolID: student.schoolID },
                     JWT_SECRET,
                     { expiresIn: '1h' }
                 );
+                console.log(token);
                 res.json({ message: "Sign in successful", token });
             } else {
                 res.status(401).json({ message: "Incorrect password" });
@@ -109,22 +108,6 @@ app.post('/signin', async (req, res) => {
     }
 });
 
-// Middleware to protect routes
-const authenticateToken = (req, res, next) => {
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
-    if (token == null) return res.sendStatus(401);
 
-    jwt.verify(token, JWT_SECRET, (err, user) => {
-        if (err) return res.sendStatus(403);
-        req.user = user;
-        next();
-    });
-};
-
-// Example of a protected route
-app.get('/protected', authenticateToken, (req, res) => {
-    res.json({ message: "This is a protected route", user: req.user });
-});
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

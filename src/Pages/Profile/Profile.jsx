@@ -2,8 +2,23 @@ import React, { useEffect, useState } from 'react'
 import Books from '../../assets/7.jpg'
 import logo from '../../assets/pngegg (15).png'
 import './Profile.css'
+import { jwtDecode } from "jwt-decode";
 
 function Profile() {
+    const [studentName, setName] = useState("");
+    const [studentEmail, setEmail] = useState("");
+    const [studentID, setID] = useState("");
+    const [role, setRole] = useState("");
+    const [userToken, setUserToken] = useState(localStorage.getItem('Student'));
+    const getData = () => {
+        if (userToken) {
+            const decoded = jwtDecode(userToken);
+            setName(decoded.name);
+            setEmail(decoded.Email);
+            setID(decoded.schoolID);
+            setRole(decoded.role);
+        }
+    }
     const [quote, setquote] = useState("")
     const quotes = [
         "Be yourself; everyone else is already taken. -Oscar Wilde",
@@ -20,7 +35,7 @@ function Profile() {
 
     useEffect(() => {
         getRandomQuote();
-
+        getData();
     })
 
     return (
@@ -35,12 +50,12 @@ function Profile() {
                     </div>
                     <div className='Description'>
                         <div className='Name'>
-                            <h2>Rana Deek</h2>
-                            <p>Student</p>
+                            <h2>{studentName}</h2>
+                            <p>{role}</p>
                         </div>
                         <div className='Second'>
-                            <p>Email: <span>RanaDeek@gmail.com</span></p>
-                            <p>ID: <span>4785962</span></p>
+                            <p>Email: <span>{studentEmail}</span></p>
+                            <p>ID: <span>{studentID}</span></p>
                             <h4>Books Borrowed By You</h4>
                             <ul>
                                 <li>Rana</li>
