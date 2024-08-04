@@ -7,7 +7,11 @@ const { body, validationResult } = require('express-validator');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+<<<<<<< HEAD
 const JWT_SECRET = 'your_secret_key';
+=======
+const JWT_SECRET = 'your_secret_key'; 
+>>>>>>> fbeceb775ff7efd317520cbe610e48ae5c72451e
 app.use(express.json());
 app.use(cors());
 
