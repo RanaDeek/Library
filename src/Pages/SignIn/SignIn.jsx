@@ -26,7 +26,7 @@ function SignIn() {
       .then(response => {
         const token = response.data.token;
         localStorage.setItem('Student', token);
-        navigate('/About');
+        navigate('/');
         window.location.reload();
         setData({
           email: '',
