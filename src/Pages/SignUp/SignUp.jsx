@@ -17,10 +17,10 @@ function SignUp() {
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({
-          ...formData,
-          [name]: value
+            ...formData,
+            [name]: value
         })
-      }
+    }
     const handleSubmit = (e) => {
         e.preventDefault();
         axios.post('http://localhost:5000/signup', formData)
@@ -62,7 +62,7 @@ function SignUp() {
                 });
             });
     };
-    
+
     return (
         <>
             <div>
@@ -159,26 +159,6 @@ function SignUp() {
                                     onChange={handleChange}
                                 />
                                 <label className="form-check-label" htmlFor="inlineRadio2">Student</label>
-                            </div>
-                        </div>
-
-                        <div className="col-12">
-                            <div className="form-check">
-                                <input
-                                    className="form-check-input"
-                                    type="checkbox"
-                                    id="invalidCheck"
-                                    name="agreeTerms"
-                                    checked={formData.agreeTerms}
-                                    onChange={handleChange}
-                                    required
-                                />
-                                <label className="form-check-label" htmlFor="invalidCheck">
-                                    Agree to terms and conditions
-                                </label>
-                                <div className="invalid-feedback">
-                                    You must agree before submitting.
-                                </div>
                             </div>
                         </div>
                         <div className="col-12">

@@ -10,6 +10,10 @@ import About from './Pages/About/About';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import bcrypt from 'bcryptjs'
+import Student from './Pages/Student/Student';
+import Book from './Pages/Book/Book';
+import Category from './Pages/Category/Category';
+import Students from './Pages/Students/Students';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -22,7 +26,11 @@ function App() {
       { path: '/signin', element: <SignIn/> },
       { path: '/signup', element: <SignUp/>},
       { path: '/Profile', element: <Profile/>},
-      { path: '/About', element: <About/>}
+      { path: '/About', element: <About/>},
+      { path: '/Student', element: <Student/>},
+      { path: '/Book', element: <Book />},
+      { path: '/Category', element: <Category />},
+      { path: '/Students', element: <Students />}
     ]
   }]);
 

@@ -19,6 +19,16 @@ export default defineConfig({
         target: 'http://localhost:5000',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/signin/, ''),
+      },
+      '/AddStudent':{
+        target: 'http://localhost:5000',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/AddStudent/, ''),
+      },
+      '/AddBook':{
+        target: 'http://localhost:5000',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/AddBook/, ''),
       }
     },
   },

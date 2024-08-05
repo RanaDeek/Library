@@ -7,11 +7,7 @@ const { body, validationResult } = require('express-validator');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-<<<<<<< HEAD
 const JWT_SECRET = 'your_secret_key';
-=======
-const JWT_SECRET = 'your_secret_key'; 
->>>>>>> fbeceb775ff7efd317520cbe610e48ae5c72451e
 app.use(express.json());
 app.use(cors());
 
@@ -19,13 +15,31 @@ mongoose.connect("mongodb://localhost:27017/Library", { useNewUrlParser: true, u
 
 const UserSchema = new mongoose.Schema({
     name: String,
-    Email: String,
+    Email: { type: String, unique: true },
     password: String,
     schoolID: String,
     role: String
 });
+const StudentSchema = new mongoose.Schema({
+    name: String,
+    Email: { type: String, unique: true },
+    phone: String,
+    current_class: String,
+    schoolID: String,
+});
 
-const UserModel = mongoose.model("students", UserSchema);
+const BookSchema = new mongoose.Schema({
+    title: String,
+    id: { type: String, unique: true },
+    author: String,
+    quantity: { type: Number, min: 3 },
+    edition: { type: Number, min: 2000 },
+    Category: String,
+});
+
+const UserModel = mongoose.model("Librarian", UserSchema);
+const StudentModel = mongoose.model("students", StudentSchema);
+const BookModel = mongoose.model("Books", BookSchema);
 
 app.get("/getStudent", (req, res) => {
     UserModel.find({})
@@ -66,9 +80,9 @@ app.post('/signup', async (req, res) => {
 
         var mailOptions = {
             from: '1201724@student.birzeit.edu',
-            to: 'ranadeek2002@gmail.com',
-            subject: 'Email From Birzeit Library',
-            text: 'That was easy!'
+            to: email,
+            subject: 'Birzeit Library',
+            text: 'Welcome to Library Birzeit !!!'
         };
 
         transporter.sendMail(mailOptions, function (error, info) {
@@ -82,7 +96,7 @@ app.post('/signup', async (req, res) => {
         const user = await newUser.save();
         res.json(user);
     } catch (err) {
-        res.status(500).send("Error creating user");
+        res.status(500).send(err);
     }
 });
 
@@ -108,10 +122,45 @@ app.post('/signin', async (req, res) => {
         }
     } catch (err) {
         console.error(err);
-        res.status(500).send("Error signing in");
+        res.status(500).send(err);
     }
 });
 
 
+app.post('/AddStudent', async (req, res) => {
+    const { firstName, lastName, email, phone, current_class, schoolID } = req.body;
 
+    try {
+        const Student = new StudentModel({
+            name: `${firstName} ${lastName}`,
+            Email: email,
+            phone: phone,
+            current_class: current_class,
+            schoolID: schoolID,
+        })
+        const student = await Student.save();
+        res.json(student);
+    } catch (err) {
+        console.error("Error adding book:", err);
+        res.status(500).send(err);
+    }
+});
+app.post('/AddBook', async (req, res) => {
+    const { title, id, author, quantity, edition, category, Image } = req.body;
+    try {
+        const Book = new BookModel({
+            title: title,
+            id: id,
+            author: author,
+            quantity: quantity,
+            edition: edition,
+            Category: category,
+        });
+        const book = await Book.save();
+        res.json(book);
+    } catch (err) {
+        console.error("Error adding book:", err);
+        res.status(500).send(err);
+    }
+});
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

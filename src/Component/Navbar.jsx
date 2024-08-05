@@ -9,7 +9,9 @@ import { jwtDecode } from "jwt-decode";
 function Navbar() {
     const location = useLocation();
     const navigate = useNavigate();
-    const isAboutPage = location.pathname === '/About';
+    const isHome = location.pathname === '/';
+    const isSignUp = location.pathname === '/signup';
+    const isSignIN = location.pathname === '/signin';
     const [studentName, setName] = useState("");
     const [userToken, setUserToken] = useState(localStorage.getItem('Student'));
     const getData = () => {
@@ -31,12 +33,12 @@ function Navbar() {
     };
 
     return (
-        <nav className={`navbar navbar-expand-lg ${isAboutPage ? 'shadow black-text' : ''}`}>
+        <nav className={`navbar navbar-expand-lg ${!(isHome || isSignIN || isSignUp) ? 'shadow black-text' : ''}`}>
             <div className="container-fluid">
-                <a className="navbar-brand" href="#">
-                    <img src={isAboutPage ? PIC2 : PIC} alt="Logo" className="d-inline-block align-text-top" />
+                <NavLink className="navbar-brand" to="/">
+                    <img src={!(isHome || isSignIN || isSignUp) ? PIC2 : PIC} alt="Logo" className="d-inline-block align-text-top" />
                     <span className='Title'>Birzeit Library</span>
-                </a>
+                </NavLink>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
@@ -46,7 +48,10 @@ function Navbar() {
                             <NavLink className="nav-link" to="/About">About</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className="nav-link" to="/">Category</NavLink>
+                            <NavLink className="nav-link" to="/Students">Students</NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink className="nav-link" to="/Category">Category</NavLink>
                         </li>
                     </ul>
 
