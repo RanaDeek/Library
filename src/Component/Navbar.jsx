@@ -70,7 +70,7 @@ function Navbar() {
                                             style={{
                                                 width: '25%',
                                                 height: '25%',
-                                                color: isAboutPage ? '#4A190D' : 'white',
+                                                color: !(isHome || isSignIN || isSignUp) ? '#4A190D' : 'white',
                                                 marginBottom: '5px',
                                             }} />
                                         <span>{studentName}</span>

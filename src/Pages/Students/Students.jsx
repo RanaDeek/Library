@@ -2,7 +2,9 @@ import React from 'react'
 
 function Students() {
   return (
-    <div>Students</div>
+<>
+<a href='Student'>New Student</a>
+</>
   )
 }
 
