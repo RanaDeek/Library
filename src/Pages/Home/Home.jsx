@@ -11,13 +11,13 @@ function Home() {
       <div className='overlay'>
         <div id="carouselExampleInterval" className="carousel slide" data-bs-ride="carousel">
           <div className="carousel-inner">
-            <div className="carousel-item active" data-bs-interval="1000">
+            <div className="carousel-item active" data-bs-interval="10000">
               <img src={Man_Women} className="d-block w-100" alt="Man and Woman" />
             </div>
-            <div className="carousel-item" data-bs-interval="800">
+            <div className="carousel-item" data-bs-interval="1000">
               <img src={Books} className="d-block w-100" alt="Books" />
             </div>
-            <div className="carousel-item" data-bs-interval="800">
+            <div className="carousel-item" data-bs-interval="1000">
               <img src={Group} className="d-block w-100" alt="Group" />
             </div>
           </div>
