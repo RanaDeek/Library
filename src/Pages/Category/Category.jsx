@@ -3,7 +3,7 @@ import { FaBook } from "react-icons/fa";
 import "./Category.css"
 import Library from '../../assets/books1.png'
 function Category() {
-  const [books, setbooks] = useState({})
+  const [books, setbooks] = useState([])
   const [password, setpassword] = useState("");
   const [userToken, setUserToken] = useState(localStorage.getItem('Student'));
   const getData = () => {

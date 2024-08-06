@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { CgProfile } from "react-icons/cg";
 function Students() {
-  const [students, setStudents] = useState({})
+  const [students, setStudents] = useState([])
 
   const getStudents = async () => {
     const response = await fetch('http://localhost:5000/getStudent')
