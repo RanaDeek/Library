@@ -12,6 +12,7 @@ function Book() {
         quantity: 0,
         edition: 0,
         category: '',
+        Status:'',
     })
     const handlechange = (e) => {
         const { name, value } = e.target;
@@ -40,6 +41,7 @@ function Book() {
                     quantity: 0,
                     edition: 0,
                     category: '',
+                    Status:'',
                 })
                 toast('Success Adding !!!', {
                     position: "top-right",
@@ -104,6 +106,12 @@ function Book() {
                         <label htmlFor="inputEmail5" className="col-sm-2 col-form-label">Edition</label>
                         <div className="col-sm-10">
                             <input type="text" className="form-control" id="inputEmail5" name='edition' value={bookData.edition} onChange={handlechange} />
+                        </div>
+                    </div>
+                    <div className="row mb-3 student-row">
+                        <label htmlFor="inputEmail6" className="col-sm-2 col-form-label">Status</label>
+                        <div className="col-sm-10">
+                            <input type="text" className="form-control" id="inputEmail6" name='Status' value={bookData.Status} onChange={handlechange} />
                         </div>
                     </div>
 

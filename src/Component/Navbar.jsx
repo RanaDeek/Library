@@ -12,6 +12,8 @@ function Navbar() {
     const isHome = location.pathname === '/';
     const isSignUp = location.pathname === '/signup';
     const isSignIN = location.pathname === '/signin';
+    const isCategory = location.pathname === '/Category';
+    const isProfile = location.pathname === '/Profile';
     const [studentName, setName] = useState("");
     const [userToken, setUserToken] = useState(localStorage.getItem('Student'));
     const getData = () => {
@@ -33,10 +35,10 @@ function Navbar() {
     };
 
     return (
-        <nav className={`navbar navbar-expand-lg ${!(isHome || isSignIN || isSignUp) ? 'shadow black-text' : ''}`}>
+        <nav className={`navbar navbar-expand-lg ${!(isHome || isSignIN || isSignUp || isCategory || isProfile) ? 'shadow black-text' : ''}`}>
             <div className="container-fluid">
                 <NavLink className="navbar-brand" to="/">
-                    <img src={!(isHome || isSignIN || isSignUp) ? PIC2 : PIC} alt="Logo" className="d-inline-block align-text-top" />
+                    <img src={!(isHome || isSignIN || isSignUp || isCategory || isProfile) ? PIC2 : PIC} alt="Logo" className="d-inline-block align-text-top" />
                     <span className='Title'>Birzeit Library</span>
                 </NavLink>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -70,7 +72,7 @@ function Navbar() {
                                             style={{
                                                 width: '25%',
                                                 height: '25%',
-                                                color: !(isHome || isSignIN || isSignUp) ? '#4A190D' : 'white',
+                                                color: !(isHome || isSignIN || isSignUp || isCategory || isProfile) ? '#4A190D' : 'white',
                                                 marginBottom: '5px',
                                             }} />
                                         <span>{studentName}</span>

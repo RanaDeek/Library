@@ -34,16 +34,17 @@ const BookSchema = new mongoose.Schema({
     quantity: { type: Number, min: 3 },
     edition: { type: Number, min: 2000 },
     Category: String,
+    Status: String,
 });
 
-const UserModel = mongoose.model("Librarian", UserSchema);
+const UserModel = mongoose.model("librarians", UserSchema);
 const StudentModel = mongoose.model("students", StudentSchema);
 const BookModel = mongoose.model("Books", BookSchema);
 
 app.get("/getStudent", (req, res) => {
-    UserModel.find({})
+    StudentModel.find({})
         .then(users => {
-            res.json({ students: users });
+            res.json({ students : users });
         })
         .catch(err => {
             console.error(err);
@@ -106,7 +107,7 @@ app.post('/signin', async (req, res) => {
             const isMatch = bcrypt.compareSync(password, student.password);
             if (isMatch) {
                 const token = jwt.sign(
-                    { id: student._id, name: student.name, role: student.role, Email: student.Email, schoolID: student.schoolID },
+                    { id: student._id, name: student.name, Email: student.Email, schoolID: student.schoolID },
                     JWT_SECRET,
                     { expiresIn: '1h' }
                 );
@@ -144,7 +145,7 @@ app.post('/AddStudent', async (req, res) => {
     }
 });
 app.post('/AddBook', async (req, res) => {
-    const { title, id, author, quantity, edition, category, Image } = req.body;
+    const { title, id, author, quantity, edition, category, Status } = req.body;
     try {
         const Book = new BookModel({
             title: title,
@@ -153,6 +154,7 @@ app.post('/AddBook', async (req, res) => {
             quantity: quantity,
             edition: edition,
             Category: category,
+            Status: Status
         });
         const book = await Book.save();
         res.json(book);
@@ -160,5 +162,15 @@ app.post('/AddBook', async (req, res) => {
         console.error("Error adding book:", err);
         res.status(500).send(err);
     }
+});
+app.get("/getBooks", (req, res) => {
+    BookModel.find({})
+        .then(books => {
+            res.json({ books: books });
+        }).catch(err => {
+            console.error(err);
+            res.status(500).send(err);
+        });
+
 });
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

@@ -29,6 +29,11 @@ export default defineConfig({
         target: 'http://localhost:5000',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/AddBook/, ''),
+      },
+      '/getBooks':{
+        target: 'http://localhost:5000',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/getBooks/, ''),
       }
     },
   },
