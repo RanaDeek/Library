@@ -134,33 +134,7 @@ function SignUp() {
                                 onChange={handleChange}
                             />
                         </div>
-                        <div className="col-md-6 role">
-                            <label htmlFor="inputRole" className='Role'>Role</label>
-                            <div className="form-check form-check-inline">
-                                <input
-                                    className="form-check-input"
-                                    type="radio"
-                                    name="role"
-                                    id="inlineRadio1"
-                                    value="Librarian"
-                                    checked={formData.role === 'Librarian'}
-                                    onChange={handleChange}
-                                />
-                                <label className="form-check-label" htmlFor="inlineRadio1">Librarian</label>
-                            </div>
-                            <div className="form-check form-check-inline">
-                                <input
-                                    className="form-check-input"
-                                    type="radio"
-                                    name="role"
-                                    id="inlineRadio2"
-                                    value="Student"
-                                    checked={formData.role === 'Student'}
-                                    onChange={handleChange}
-                                />
-                                <label className="form-check-label" htmlFor="inlineRadio2">Student</label>
-                            </div>
-                        </div>
+                       
                         <div className="col-12">
                             <button type="submit" className="btn btn-primary">Sign Up</button>
                         </div>

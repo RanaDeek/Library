@@ -18,7 +18,6 @@ const UserSchema = new mongoose.Schema({
     Email: { type: String, unique: true },
     password: String,
     schoolID: String,
-    role: String
 });
 const StudentSchema = new mongoose.Schema({
     name: String,
@@ -53,7 +52,7 @@ app.get("/getStudent", (req, res) => {
 });
 
 app.post('/signup', async (req, res) => {
-    const { firstName, lastName, email, password, schoolID, role } = req.body;
+    const { firstName, lastName, email, password, schoolID } = req.body;
     const hashedPassword = bcrypt.hashSync(password, 10);
 
     try {
@@ -62,7 +61,6 @@ app.post('/signup', async (req, res) => {
             Email: email,
             password: hashedPassword,
             schoolID,
-            role
         });
 
         var nodemailer = require('nodemailer');
