@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { FaBook } from "react-icons/fa";
 import "./Category.css"
 import Library from '../../assets/books1.png'
+import { NavLink } from 'react-router-dom';
 function Category() {
   const [books, setbooks] = useState([])
   const [password, setpassword] = useState("");
@@ -29,7 +30,7 @@ function Category() {
         <div className='table-container'>
           <h1>Categories</h1>
           <p>Explore your favorite books 📚</p>
-          <a href='Book'>Add Book</a>
+          <NavLink to='/Book'>Add Book</NavLink>
           <div className='table-width'>
             <table className="table table-striped">
               <thead>

@@ -20,7 +20,7 @@ function Students() {
         <div className='table-container'>
           <h1>Students</h1>
           <p>Explore your favorite books 📚</p>
-          <a href='Student'>Add Student</a>
+          <NavLink to='/Student'>Add Student</NavLink>
           <div className='table-width'>
             <table className="table table-striped">
               <thead>
