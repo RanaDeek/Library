@@ -14,7 +14,7 @@ function Navbar() {
     const isSignIN = location.pathname === '/signin';
     const isCategory = location.pathname === '/Category';
     const isProfile = location.pathname === '/Profile';
-    const isStudent = location.pathname === '/Students ';
+    const isStudent = location.pathname === '/Students';
     const [studentName, setName] = useState("");
     const [userToken, setUserToken] = useState(localStorage.getItem('Student'));
     const getData = () => {
